@@ -18,25 +18,34 @@
           {
             "albumId": 1,
             "id": 1,
-            "title": "accusamus beatae ad facilis cum similique qui sunt",
+            "title": "reprehenderit est deserunt velit ipsam",
+            "accentTitle": "reprehenderit est deserunt velit ipsam",
             "text": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-            "url": "https://picsum.photos/1920/1200",
-            "buttonTitle": 'Some text in the button'
+            "img": "https://picsum.photos/1600/900",
+            "url": "https://some-link.com",
+            "linkText": "Replace the front brake",
+            "buttonTitle": 'Some text in the button',
           },
           {
             "albumId": 1,
             "id": 2,
-            "title": "reprehenderit est deserunt velit ipsam",
+            "title": "officia porro iure quia iusto qui ipsa ut modi",
+            "accentTitle": "officia porro",
             "text": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-            "url": "https://picsum.photos/1920/1200",
+            "img": "https://picsum.photos/1200/700",
+            "url": "https://some-link.com",
+            "linkText": "Replace the front brake",
             "buttonTitle": 'Some text in the button'
           },
           {
             "albumId": 1,
             "id": 3,
-            "title": "officia porro iure quia iusto qui ipsa ut modi",
+            "title": "How to replace the front brake pads",
+            "accentTitle": "front brake pads",
             "text": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-            "url": "https://picsum.photos/1920/1200",
+            "img": "https://picsum.photos/1920/1200",
+            "url": "https://some-link.com",
+            "linkText": "Replace the front brake",
             "buttonTitle": 'Some text in the button'
           },
         ]
@@ -46,16 +55,25 @@
 </script>
 
 <style lang="scss">
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
   #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  html {
+    font-size: 10px;
+  }
   body {
     margin: 0;
+    font-size: 14px;
   }
   * {
     box-sizing: border-box;
+  }
+  h1, h2, h3, h4, h5 {
+    margin-top: 0;
+    margin-bottom: 0;
   }
   p {
     margin: 0;
@@ -68,6 +86,12 @@
     }
     &:hover {
       color: inherit;
+    }
+  }
+
+  @media (max-width: 1599px) {
+    html {
+      font-size: 8px;
     }
   }
 </style>

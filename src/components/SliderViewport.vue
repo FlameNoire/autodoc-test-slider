@@ -3,9 +3,13 @@
     <slide
       v-for="slide in slides"
       :key="slide.id"
-      :url="slide.url"
+      :img="slide.img"
+      :link="slide.url"
+      :linkText="slide.linkText"
       :text="slide.text"
-      :title="slide.title" />
+      :title="slide.title"
+      :accentTitle="slide.accentTitle"
+    />
   </div>
 </template>
 
