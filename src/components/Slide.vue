@@ -92,12 +92,12 @@
     margin-top: 4.5rem;
     font-size: 18px;
     font-weight: 500;
-    color: crimson;
+    color: #CC0000;
     transition: all .2s;
     display: flex;
     align-items: center;
     &:hover, &:focus {
-      color: crimson;
+      color: #CC0000;
       .autodoc-slider__slide-link-arrow {
         transform: translateX(10px);
       }

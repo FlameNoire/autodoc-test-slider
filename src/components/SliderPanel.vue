@@ -3,9 +3,11 @@
     <SliderButton
       v-for="(button, index) in buttons"
       :key="index"
-      :text="button.text"
+      :text="button"
       :slideNum="index + 1"
       :buttonWidth=33.3333
+      :class="{'active' : index === activeSlide}"
+      :progressStatus="progressStatus"
     />
   </div>
 </template>
@@ -20,6 +22,17 @@
     },
     components: {
       SliderButton
+    },
+    data: () => {
+      return {
+        activeIndex: 1,
+        progressStatus: 40
+      }
+    },
+    computed: {
+      activeSlide: function () {
+        return this.activeIndex
+      }
     }
   }
 
@@ -31,6 +44,5 @@
     height: 10vh;
     display: flex;
     align-items: stretch;
-    border: 1px solid #333;
   }
 </style>

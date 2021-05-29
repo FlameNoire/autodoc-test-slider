@@ -24,7 +24,7 @@
             "img": "https://picsum.photos/1600/900",
             "url": "https://some-link.com",
             "linkText": "Replace the front brake",
-            "buttonTitle": 'Some text in the button',
+            "buttonTitle": 'Brake replacing',
           },
           {
             "albumId": 1,
@@ -35,7 +35,7 @@
             "img": "https://picsum.photos/1200/700",
             "url": "https://some-link.com",
             "linkText": "Replace the front brake",
-            "buttonTitle": 'Some text in the button'
+            "buttonTitle": 'Driver shift control'
           },
           {
             "albumId": 1,
