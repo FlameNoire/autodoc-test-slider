@@ -1,8 +1,13 @@
 <template>
-  <a href="#" class="autodoc-slider__button" @click.prevent="$emit('slideChangeHandler', slideNum)" :style="{ width: buttonWidth + '%' }">
+  <a href="#"
+     class="autodoc-slider__button"
+     @click.prevent="$emit('slideChangeHandler', slideNum)"
+     @mouseover="$emit('mouseoverHandler')"
+     @mouseleave="$emit('mouseleaveHandler')"
+     :style="{ width: buttonWidth + '%' }">
     <div class="autodoc-slider__button-progress">
       <div v-if="isProgress" class="autodoc-slider__button-progress-bar">
-        <span :style="{ width: progressStatus + '%' }"></span>
+        <span></span>
       </div>
     </div>
     <div class="autodoc-slider__button-number">{{ '0' + slideNum }}</div>
@@ -14,7 +19,7 @@
   export default {
     name: 'slider-button',
     props: {
-      buttonWidth: String,
+      buttonWidth: Number,
       slideNum: Number,
       text: String,
       progressStatus: Number,
@@ -24,6 +29,14 @@
 </script>
 
 <style lang="scss">
+  @keyframes progress {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
   .autodoc-slider__button {
     padding: 15px 20px;
     position: relative;
@@ -35,8 +48,22 @@
     &.active {
       color: #ffffff;
       background-color: #CC0000;
+      &:hover {
+        .autodoc-slider__button-progress-bar {
+          span {
+            width: 0;
+            transition: width .5s linear;
+            animation: none;
+          }
+        }
+      }
       .autodoc-slider__button-progress {
         visibility: visible;
+      }
+      .autodoc-slider__button-progress-bar {
+        span {
+          width: 100%;
+        }
       }
       .autodoc-slider__button-number {
         opacity: 0.8;
@@ -75,7 +102,10 @@
     span {
       position: absolute;
       height: 100%;
+      width: 0;
       background-color: #fff;
+      transition: width 5s linear;
+      animation: progress 5s 0s linear backwards;
     }
   }
 </style>

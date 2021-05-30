@@ -7,9 +7,11 @@
       :slideNum="index + 1"
       :buttonWidth=buttonWidth
       :class="{'active' : index === activeSlide}"
-      :isProgress="isProgress"
+      :isProgress="options.autoplay"
       :progressStatus="progressStatus"
       @slideChangeHandler="slideChangeHandler"
+      @mouseoverHandler="mouseoverHandler"
+      @mouseleaveHandler="mouseleaveHandler"
     />
   </div>
 </template>
@@ -20,9 +22,10 @@
   export default {
     name: 'slider-panel',
     props: {
+      options: Object,
       activeIndex: Number,
       buttons: Array,
-      isProgress: Boolean
+      isProgress: Boolean,
     },
     components: {
       SliderButton
@@ -43,7 +46,13 @@
     methods: {
       slideChangeHandler(index) {
         this.$emit('slideChange', index - 1)
-      }
+      },
+      mouseoverHandler() {
+        this.$emit('mouseOver')
+      },
+      mouseleaveHandler() {
+        this.$emit('mouseLeave')
+      },
     }
   }
 

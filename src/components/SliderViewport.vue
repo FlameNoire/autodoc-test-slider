@@ -32,6 +32,9 @@
       activeSlide: function () {
         return this.activeIndex
       }
+    },
+    methods: {
+      slideChange() {}
     }
   }
 </script>

@@ -16,7 +16,7 @@
 
 <script>
   export default {
-    name: 'slider-slide',
+    name: 'slide',
     props: {
       title: String,
       accentTitle: String || undefined,
