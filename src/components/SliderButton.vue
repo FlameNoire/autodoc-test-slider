@@ -1,5 +1,5 @@
 <template>
-  <a href="#" class="autodoc-slider__button" @click.prevent :style="{ width: buttonWidth + '%' }">
+  <a href="#" class="autodoc-slider__button" @click.prevent="$emit('slideChangeHandler', slideNum)" :style="{ width: buttonWidth + '%' }">
     <div class="autodoc-slider__button-progress">
       <div class="autodoc-slider__button-progress-bar">
         <span :style="{ width: progressStatus + '%' }"></span>

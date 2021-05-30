@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Slider :slides="slides"/>
+    <Slider :options="options" :slides="slides"/>
   </div>
 </template>
 
@@ -14,6 +14,10 @@
     },
     data: () => {
       return {
+        options: {
+          changeTime: 5,
+          autoplay: true,
+        },
         slides: [
           {
             "albumId": 1,

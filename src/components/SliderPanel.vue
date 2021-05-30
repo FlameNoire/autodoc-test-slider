@@ -8,6 +8,7 @@
       :buttonWidth=33.3333
       :class="{'active' : index === activeSlide}"
       :progressStatus="progressStatus"
+      @slideChangeHandler="slideChangeHandler"
     />
   </div>
 </template>
@@ -18,20 +19,27 @@
   export default {
     name: 'slider-panel',
     props: {
-      buttons: Array
+      activeIndex: Number,
+      buttons: Array,
+      slideChange2: Function
     },
     components: {
       SliderButton
     },
     data: () => {
       return {
-        activeIndex: 1,
+        // activeIndex: 0,
         progressStatus: 40
       }
     },
     computed: {
       activeSlide: function () {
         return this.activeIndex
+      }
+    },
+    methods: {
+      slideChangeHandler(index) {
+        this.$emit('slideChange', index - 1)
       }
     }
   }
