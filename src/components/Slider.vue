@@ -1,7 +1,7 @@
 <template>
   <div class="autodoc-slider">
     <slider-viewport :options="options" :slides="slides" :activeIndex="activeSlide" />
-    <slider-panel :buttons="buttonTexts" @slideChange="slideChange" :activeIndex="activeSlide" />
+    <slider-panel :buttons="buttonTexts" @slideChange="slideChange" :activeIndex="activeSlide" :isProgress="options.autoplay" />
   </div>
 </template>
 

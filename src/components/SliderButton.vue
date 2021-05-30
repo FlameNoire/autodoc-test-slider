@@ -1,7 +1,7 @@
 <template>
   <a href="#" class="autodoc-slider__button" @click.prevent="$emit('slideChangeHandler', slideNum)" :style="{ width: buttonWidth + '%' }">
     <div class="autodoc-slider__button-progress">
-      <div class="autodoc-slider__button-progress-bar">
+      <div v-if="isProgress" class="autodoc-slider__button-progress-bar">
         <span :style="{ width: progressStatus + '%' }"></span>
       </div>
     </div>
@@ -14,10 +14,11 @@
   export default {
     name: 'slider-button',
     props: {
-      buttonWidth: Number,
+      buttonWidth: String,
       slideNum: Number,
       text: String,
-      progressStatus: Number
+      progressStatus: Number,
+      isProgress: Boolean
     }
   }
 </script>
@@ -27,6 +28,7 @@
     padding: 15px 20px;
     position: relative;
     font-size: 16px;
+    line-height: 22px;
     font-weight: 500;
     display: flex;
     align-items: flex-start;
@@ -42,11 +44,14 @@
     }
   }
   .autodoc-slider__button-number {
+    padding-right: 10px;
     flex-shrink: 0;
     opacity: 0.3;
   }
   .autodoc-slider__button-text {
     width: 100%;
+    height: 44px;
+    overflow: hidden;
     text-align: center;
   }
   .autodoc-slider__button-progress {

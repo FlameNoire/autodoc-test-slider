@@ -5,8 +5,9 @@
       :key="index"
       :text="button"
       :slideNum="index + 1"
-      :buttonWidth=33.3333
+      :buttonWidth=buttonWidth
       :class="{'active' : index === activeSlide}"
+      :isProgress="isProgress"
       :progressStatus="progressStatus"
       @slideChangeHandler="slideChangeHandler"
     />
@@ -21,20 +22,22 @@
     props: {
       activeIndex: Number,
       buttons: Array,
-      slideChange2: Function
+      isProgress: Boolean
     },
     components: {
       SliderButton
     },
     data: () => {
       return {
-        // activeIndex: 0,
         progressStatus: 40
       }
     },
     computed: {
       activeSlide: function () {
         return this.activeIndex
+      },
+      buttonWidth: function () {
+        return 100 / this.buttons.length
       }
     },
     methods: {
