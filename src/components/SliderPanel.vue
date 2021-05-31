@@ -30,11 +30,6 @@
     components: {
       SliderButton
     },
-    data: () => {
-      return {
-        progressStatus: 40
-      }
-    },
     computed: {
       activeSlide: function () {
         return this.activeIndex

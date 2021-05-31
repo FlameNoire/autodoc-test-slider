@@ -100,7 +100,8 @@
       }
     },
     mounted() {
-      this.progressAnimation()
+      if (this.progressStatus)
+        this.progressAnimation()
     }
   }
 </script>
