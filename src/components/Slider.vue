@@ -33,7 +33,8 @@
     data: () => {
       return {
         activeIndex: 0,
-        pause: false
+        pause: false,
+        progress: 0
       }
     },
     computed: {
@@ -45,23 +46,28 @@
       },
       isPause: function () {
         return this.pause
+      },
+      progressStatus: function () {
+        return this.progress
       }
     },
     methods: {
       slideChange(index) {
         this.activeIndex = index
+        clearInterval(this.intervalID)
+        this.slideAutoChange()
       },
       slideAutoChange() {
         this.intervalID = setInterval(() => {
           this.activeIndex < this.slides.length - 1 ? this.activeIndex++ : this.activeIndex = 0
-        }, 5000)
+        }, this.options.slideChangeTime)
       },
-      mouseOver() {
-        this.pause = true
+      mouseOver(pause) {
+        this.pause = pause
         clearInterval(this.intervalID)
       },
-      mouseLeave() {
-        this.pause = false
+      mouseLeave(pause) {
+        this.pause = pause
         this.slideAutoChange()
       },
     },

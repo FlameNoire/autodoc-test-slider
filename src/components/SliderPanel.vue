@@ -8,7 +8,8 @@
       :buttonWidth=buttonWidth
       :class="{'active' : index === activeSlide}"
       :isProgress="options.autoplay"
-      :progressStatus="progressStatus"
+      :progressStatus="index === activeSlide"
+      :progressDuration="options.slideChangeTime"
       @slideChangeHandler="slideChangeHandler"
       @mouseoverHandler="mouseoverHandler"
       @mouseleaveHandler="mouseleaveHandler"
@@ -25,7 +26,6 @@
       options: Object,
       activeIndex: Number,
       buttons: Array,
-      isProgress: Boolean,
     },
     components: {
       SliderButton
@@ -47,11 +47,11 @@
       slideChangeHandler(index) {
         this.$emit('slideChange', index - 1)
       },
-      mouseoverHandler() {
-        this.$emit('mouseOver')
+      mouseoverHandler(pause) {
+        this.$emit('mouseOver', pause)
       },
-      mouseleaveHandler() {
-        this.$emit('mouseLeave')
+      mouseleaveHandler(pause) {
+        this.$emit('mouseLeave', pause)
       },
     }
   }

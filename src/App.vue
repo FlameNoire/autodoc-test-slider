@@ -15,7 +15,7 @@
     data: () => {
       return {
         options: {
-          slideChangeTime: 5,
+          slideChangeTime: 5000,
           autoplay: true,
           activeSlide: 1
         },

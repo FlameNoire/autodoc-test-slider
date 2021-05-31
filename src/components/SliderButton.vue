@@ -2,12 +2,13 @@
   <a href="#"
      class="autodoc-slider__button"
      @click.prevent="$emit('slideChangeHandler', slideNum)"
-     @mouseover="$emit('mouseoverHandler')"
-     @mouseleave="$emit('mouseleaveHandler')"
-     :style="{ width: buttonWidth + '%' }">
+     @mouseover="mouseover"
+     @mouseleave="mouseleave"
+     :style="{ width: buttonWidth + '%' }"
+  >
     <div class="autodoc-slider__button-progress">
       <div v-if="isProgress" class="autodoc-slider__button-progress-bar">
-        <span></span>
+        <span ref="progressBar"></span>
       </div>
     </div>
     <div class="autodoc-slider__button-number">{{ '0' + slideNum }}</div>
@@ -22,8 +23,84 @@
       buttonWidth: Number,
       slideNum: Number,
       text: String,
-      progressStatus: Number,
-      isProgress: Boolean
+      progressStatus: Boolean,
+      progressDuration: Number,
+      isProgress: Boolean,
+    },
+    data: () => {
+      return {
+        pause: false,
+        progressValue: 0
+      }
+    },
+    computed: {
+      isPause: function () {
+        return this.pause
+      },
+      getProgressValue: function () {
+        return this.progressValue
+      }
+    },
+    methods: {
+      mouseover() {
+        if ( this.progressStatus ) {
+          this.pause = true
+          this.$emit('mouseoverHandler', this.isPause)
+        }
+      },
+      mouseleave() {
+        if ( this.progressStatus ) {
+          this.pause = false
+          this.$emit('mouseleaveHandler', this.isPause)
+        }
+      },
+      progressAnimation() {
+        let tween = this.$refs.progressBar
+        let step = 100 / (60 * this.progressDuration / 1000)
+        this.progressValue = 0
+        let animation = () => {
+          if ( this.getProgressValue < 100 && !this.isPause ) {
+            this.progressValue += step
+            tween.style.width = this.getProgressValue + '%'
+            requestAnimationFrame(animation)
+          }
+        }
+        this.requestId = requestAnimationFrame(animation)
+      },
+      progressAnimationReverse() {
+        let tween = this.$refs.progressBar
+        let step = 2
+        let animation = () => {
+          if ( this.getProgressValue > 0 && this.isPause ) {
+            this.progressValue -= step
+            tween.style.width = this.getProgressValue + '%'
+            requestAnimationFrame(animation)
+          }
+          if ( this.getProgressValue <= 0 ) {
+            this.progressValue = 0
+            tween.style.width = '0%'
+          }
+        }
+        this.requestId = requestAnimationFrame(animation)
+      },
+    },
+    watch: {
+      progressStatus: function (newValue) {
+        if (newValue)
+          this.progressAnimation()
+      },
+      isPause: function (newValue) {
+        if (!newValue) {
+          cancelAnimationFrame(this.requestId);
+          this.progressAnimation()
+        } else if (newValue) {
+          cancelAnimationFrame(this.requestId);
+          this.progressAnimationReverse()
+        }
+      }
+    },
+    mounted() {
+      this.progressAnimation()
     }
   }
 </script>
@@ -52,18 +129,11 @@
         .autodoc-slider__button-progress-bar {
           span {
             width: 0;
-            transition: width .5s linear;
-            animation: none;
           }
         }
       }
       .autodoc-slider__button-progress {
         visibility: visible;
-      }
-      .autodoc-slider__button-progress-bar {
-        span {
-          width: 100%;
-        }
       }
       .autodoc-slider__button-number {
         opacity: 0.8;
@@ -104,8 +174,6 @@
       height: 100%;
       width: 0;
       background-color: #fff;
-      transition: width 5s linear;
-      animation: progress 5s 0s linear backwards;
     }
   }
 </style>
