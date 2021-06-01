@@ -2,16 +2,16 @@
   <a href="#"
      class="autodoc-slider__button"
      @click.prevent="buttonClick"
-     @mouseover="mouseover"
-     @mouseleave="mouseleave"
+     @mouseover.self="mouseover"
+     @mouseleave.self="mouseleave"
      :style="{ width: buttonWidth + '%' }"
   >
     <div class="autodoc-slider__button-progress">
-      <div v-if="isProgress" class="autodoc-slider__button-progress-bar">
+      <div v-if="autoplay" class="autodoc-slider__button-progress-bar">
         <span ref="progressBar"></span>
       </div>
     </div>
-    <div class="autodoc-slider__button-number">{{ '0' + slideNum }}</div>
+    <div class="autodoc-slider__button-number">{{ '0' + (slideNum + 1) }}</div>
     <div class="autodoc-slider__button-text">{{ text }}</div>
   </a>
 </template>
@@ -25,7 +25,7 @@
       text: String,
       progressStatus: Boolean,
       progressDuration: Number,
-      isProgress: Boolean,
+      autoplay: Boolean,
     },
     data: () => {
       return {
@@ -44,21 +44,22 @@
     methods: {
       buttonClick() {
         if ( !this.progressStatus ) {
+          // this.pause = true
           this.$emit('slideChangeHandler', this.slideNum)
         }
       },
       mouseover() {
-        if ( this.progressStatus ) {
+        if ( this.progressStatus && this.autoplay ) {
           this.pause = true
-          cancelAnimationFrame(this.requestId);
+          cancelAnimationFrame(this.requestId)
           this.progressAnimationReverse()
           this.$emit('mouseoverHandler', true)
         }
       },
       mouseleave() {
-        if ( this.progressStatus ) {
+        if ( this.progressStatus && this.autoplay ) {
           this.pause = false
-          cancelAnimationFrame(this.requestId);
+          cancelAnimationFrame(this.requestId)
           this.progressAnimation()
           this.$emit('mouseleaveHandler', false)
         }
@@ -95,12 +96,13 @@
     },
     watch: {
       progressStatus: function (newValue) {
-        if (newValue)
+        if (newValue && this.autoplay)
+          cancelAnimationFrame(this.requestId)
           this.progressAnimation()
       },
     },
     mounted() {
-      if (this.progressStatus)
+      if ( this.progressStatus && this.autoplay )
         this.progressAnimation()
     }
   }
@@ -163,10 +165,12 @@
     bottom: 100%;
     left: 0;
     width: 100%;
-    height: 4vh;
+    height: calc(4vh + 1px);
+    margin-bottom: -1px;
     display: flex;
     align-items: center;
     background-color: #CC0000;
+    pointer-events: none;
   }
   .autodoc-slider__button-progress-bar {
     position: relative;

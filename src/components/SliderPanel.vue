@@ -4,11 +4,11 @@
       v-for="(button, index) in buttons"
       :key="index"
       :text="button"
-      :slideNum="index + 1"
+      :slideNum="index"
       :buttonWidth=buttonWidth
-      :class="{'active' : index === activeSlide}"
-      :isProgress="options.autoplay"
-      :progressStatus="index === activeSlide"
+      :class="{'active' : index === activeIndex}"
+      :autoplay="options.autoplay"
+      :progressStatus="index === activeIndex"
       :progressDuration="options.slideChangeTime"
       @slideChangeHandler="slideChangeHandler"
       @mouseoverHandler="mouseoverHandler"
@@ -31,16 +31,13 @@
       SliderButton
     },
     computed: {
-      activeSlide: function () {
-        return this.activeIndex
-      },
       buttonWidth: function () {
         return 100 / this.buttons.length
       }
     },
     methods: {
       slideChangeHandler(index) {
-        this.$emit('slideChange', index - 1)
+        this.$emit('slideChange', index)
       },
       mouseoverHandler(pause) {
         this.$emit('mouseOver', pause)

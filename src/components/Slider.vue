@@ -49,6 +49,9 @@
       },
       progressStatus: function () {
         return this.progress
+      },
+      autoPlay: function () {
+        return this.options.autoplay
       }
     },
     methods: {
@@ -58,9 +61,11 @@
         this.slideAutoChange()
       },
       slideAutoChange() {
-        this.intervalID = setInterval(() => {
-          this.activeIndex < this.slides.length - 1 ? this.activeIndex++ : this.activeIndex = 0
-        }, this.options.slideChangeTime)
+        if ( this.autoPlay && !this.isPause ) {
+          this.intervalID = setInterval(() => {
+            this.activeIndex < this.slides.length - 1 ? this.activeIndex++ : this.activeIndex = 0
+          }, this.options.slideChangeTime)
+        }
       },
       mouseOver(pause) {
         this.pause = pause
@@ -68,12 +73,15 @@
       },
       mouseLeave(pause) {
         this.pause = pause
+        clearInterval(this.intervalID)
         this.slideAutoChange()
       },
     },
     mounted() {
       this.activeIndex = this.options.startSlide <= this.slides.length ? this.options.startSlide - 1 : 0
-      this.slideAutoChange()
+      if ( this.autoPlay ) {
+        this.slideAutoChange()
+      }
     }
   }
 </script>

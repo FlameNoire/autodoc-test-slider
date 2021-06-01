@@ -3,9 +3,9 @@
     <transition-group name="fade">
       <slide
         v-for="(slide, index) in slides"
-        v-show="index === activeSlide"
+        v-show="index === activeIndex"
         :key="slide.id"
-        :class="{'active' : index === activeSlide}"
+        :class="{'active' : index === activeIndex}"
         :img="slide.img"
         :link="slide.url"
         :linkText="slide.linkText"
@@ -29,11 +29,6 @@
       options: Object,
       slides: Array,
       activeIndex: Number
-    },
-    computed: {
-      activeSlide: function () {
-        return this.activeIndex
-      }
     },
   }
 </script>
