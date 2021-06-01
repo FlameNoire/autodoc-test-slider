@@ -56,17 +56,17 @@
             "linkText": "Operating principle",
             "buttonTitle": 'Sportmatic'
           },
-          // {
-          //   "id": 3,
-          //   "title": "How to replace the front brake pads",
-          //   "accentTitle": "front brake pads",
-          //   "text": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
-          //   "img": require('./assets/img/689-1600x900.jpg'),
-          //   // "img": "https://picsum.photos/1600/900",
-          //   "url": "https://some-link.com",
-          //   "linkText": "Replace the front brake",
-          //   "buttonTitle": 'Brake replacing',
-          // },
+          {
+            "id": 3,
+            "title": "How to replace the front brake pads",
+            "accentTitle": "front brake pads",
+            "text": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+            "img": require('./assets/img/689-1600x900.jpg'),
+            // "img": "https://picsum.photos/1600/900",
+            "url": "https://some-link.com",
+            "linkText": "Replace the front brake",
+            "buttonTitle": 'Brake replacing',
+          },
           // {
           //   "id": 4,
           //   "title": "Driver shift control: features, advantages & disadvantages",

@@ -95,6 +95,7 @@
     overflow: hidden;
   }
   .autodoc-slider__slide-link {
+    margin-bottom: 10px;
     margin-top: 4.5rem;
     font-size: 18px;
     font-weight: 500;

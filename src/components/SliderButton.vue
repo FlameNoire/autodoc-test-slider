@@ -44,20 +44,23 @@
     methods: {
       buttonClick() {
         if ( !this.progressStatus ) {
-          this.pause = false
           this.$emit('slideChangeHandler', this.slideNum)
         }
       },
       mouseover() {
         if ( this.progressStatus ) {
           this.pause = true
-          this.$emit('mouseoverHandler', this.isPause)
+          cancelAnimationFrame(this.requestId);
+          this.progressAnimationReverse()
+          this.$emit('mouseoverHandler', true)
         }
       },
       mouseleave() {
         if ( this.progressStatus ) {
           this.pause = false
-          this.$emit('mouseleaveHandler', this.isPause)
+          cancelAnimationFrame(this.requestId);
+          this.progressAnimation()
+          this.$emit('mouseleaveHandler', false)
         }
       },
       progressAnimation() {
@@ -95,15 +98,6 @@
         if (newValue)
           this.progressAnimation()
       },
-      isPause: function (newValue) {
-        if (!newValue) {
-          cancelAnimationFrame(this.requestId);
-          this.progressAnimation()
-        } else if (newValue) {
-          cancelAnimationFrame(this.requestId);
-          this.progressAnimationReverse()
-        }
-      }
     },
     mounted() {
       if (this.progressStatus)
@@ -153,6 +147,7 @@
     opacity: 0.3;
   }
   .autodoc-slider__button-text {
+    padding-right: 10px;
     width: 100%;
     display: -webkit-box;
     -webkit-line-clamp: 2;
