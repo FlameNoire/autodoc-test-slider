@@ -50,6 +50,6 @@
   .autodoc-slider__viewport {
     position: relative;
     width: 100%;
-    height: 90vh;
+    height: 92vh;
   }
 </style>

@@ -56,7 +56,7 @@
 <style lang="scss">
   .autodoc-slider__panel {
     width: 100%;
-    height: 10vh;
+    height: 8vh;
     display: flex;
     align-items: stretch;
   }

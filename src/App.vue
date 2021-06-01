@@ -17,43 +17,48 @@
         options: {
           slideChangeTime: 5000,
           autoplay: true,
-          activeSlide: 1
+          startSlide: 4
         },
-        slides: [
+        slidesData: [
           {
-            "albumId": 1,
-            "id": 1,
-            "title": "reprehenderit est deserunt velit ipsam",
-            "accentTitle": "reprehenderit est deserunt velit ipsam",
-            "text": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-            "img": "https://picsum.photos/1600/900",
+            "id": 0,
+            "title": "How to replace the front brake pads",
+            "accentTitle": "front brake pads",
+            "text": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+            "img": require('./assets/img/689-1600x900.jpg'),
+            // "img": "https://picsum.photos/1600/900",
             "url": "https://some-link.com",
             "linkText": "Replace the front brake",
             "buttonTitle": 'Brake replacing',
           },
           {
-            "albumId": 1,
-            "id": 2,
-            "title": "officia porro iure quia iusto qui ipsa ut modi",
-            "accentTitle": "officia porro",
+            "id": 1,
+            "title": "Driver shift control: features, advantages & disadvantages",
+            "accentTitle": "Driver shift control:",
             "text": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-            "img": "https://picsum.photos/1200/700",
+            "img": require('./assets/img/426-1200x700.jpg'),
+            // "img": "https://picsum.photos/1200/700",
             "url": "https://some-link.com",
-            "linkText": "Replace the front brake",
+            "linkText": "How it works",
             "buttonTitle": 'Driver shift control'
           },
           {
-            "albumId": 1,
-            "id": 3,
-            "title": "How to replace the front brake pads",
-            "accentTitle": "front brake pads",
+            "id": 2,
+            "title": "What is Sportmatic",
+            "accentTitle": "Sportmatic",
             "text": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-            "img": "https://picsum.photos/1920/1200",
+            "img": require('./assets/img/392-1920x1200.jpg'),
+            // "img": "https://picsum.photos/1920/1200",
             "url": "https://some-link.com",
-            "linkText": "Replace the front brake",
+            "linkText": "Operating principle",
             "buttonTitle": 'Some text in the button'
           },
         ]
+      }
+    },
+    computed: {
+      slides() {
+        return this.slidesData
       }
     }
   }

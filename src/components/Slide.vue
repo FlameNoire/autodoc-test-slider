@@ -62,7 +62,7 @@
       object-fit: cover;
       display: block;
       width: 100vw;
-      height: 90vh;
+      height: 92vh;
     }
   }
   .autodoc-slider__slide-content {
@@ -80,7 +80,7 @@
   }
   .autodoc-slider__slide-title {
     margin-bottom: 3rem;
-    font-size: 10rem;
+    font-size: 9rem;
     font-weight: 500;
     line-height: 1.35;
   }

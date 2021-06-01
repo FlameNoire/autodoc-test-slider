@@ -72,9 +72,8 @@
       },
     },
     mounted() {
-      this.activeIndex = this.options.activeSlide - 1
+      this.activeIndex = this.options.startSlide <= this.slides.length ? this.options.startSlide - 1 : 0
       this.slideAutoChange()
-      console.log(this)
     }
   }
 </script>
