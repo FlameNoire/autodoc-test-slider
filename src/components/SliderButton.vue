@@ -1,7 +1,7 @@
 <template>
   <a href="#"
      class="autodoc-slider__button"
-     @click.prevent="$emit('slideChangeHandler', slideNum)"
+     @click.prevent="buttonClick"
      @mouseover="mouseover"
      @mouseleave="mouseleave"
      :style="{ width: buttonWidth + '%' }"
@@ -42,6 +42,12 @@
       }
     },
     methods: {
+      buttonClick() {
+        if ( !this.progressStatus ) {
+          this.pause = false
+          this.$emit('slideChangeHandler', this.slideNum)
+        }
+      },
       mouseover() {
         if ( this.progressStatus ) {
           this.pause = true
@@ -148,7 +154,9 @@
   }
   .autodoc-slider__button-text {
     width: 100%;
-    height: 44px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
     text-align: center;
   }

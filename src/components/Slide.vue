@@ -4,7 +4,7 @@
       <img :src="img" alt=" ">
     </div>
     <div class="autodoc-slider__slide-content">
-      <h2 class="autodoc-slider__slide-title">{{title}}</h2>
+      <h2 class="autodoc-slider__slide-title" v-html="transformedTitle"></h2>
       <p class="autodoc-slider__slide-text">{{text}}</p>
       <a :href="link" class="autodoc-slider__slide-link">
         <span class="autodoc-slider__slide-link-text">{{linkText}}</span>
@@ -26,10 +26,9 @@
       linkText: String,
     },
     computed: {
-      newTitle() {
-        let title = this.title
-        return title
-      }
+      transformedTitle() {
+        return this.title.replace(this.accentTitle, `<span>${this.accentTitle}</span>`)
+      },
     }
   }
 </script>
@@ -83,10 +82,17 @@
     font-size: 9rem;
     font-weight: 500;
     line-height: 1.35;
+    span {
+      color: #CC0000;
+    }
   }
   .autodoc-slider__slide-text {
     font-size: 21px;
     font-weight: 400;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   .autodoc-slider__slide-link {
     margin-top: 4.5rem;
